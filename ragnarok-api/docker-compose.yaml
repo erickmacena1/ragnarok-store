@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  db:
+    container_name: 'first-seasson'
+    image: 'postgres:latest'
+    ports:
+      - "8080:5432"
+    env_file:
+      - .env
+    volumes:
+      - ~/databaseVolumes/firstSeasson/:/var/lib/postgresql/data/
