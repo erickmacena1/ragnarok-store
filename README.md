@@ -1,4 +1,4 @@
-# ⚔🛍 Ragnarok Store ⚔🛍
+# ⚔🛍 Ragnarok Store 🛍⚔
 
 #### A loja de eletrônicos que veio para acabar com a concorrência!
 
