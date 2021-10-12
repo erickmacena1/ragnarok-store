@@ -1,25 +1,9 @@
-import { Request, Response, Router } from 'express';
-import { CreateProductController,  } from '../controllers/productControllers/CreateProductController';
-import { DeleteProductController } from '../controllers/productControllers/DeleteProductController';
-import { UpdateProductController } from '../controllers/productControllers/UpdateProductController';
-import { ViewProductsController } from '../controllers/productControllers/ViewProductsController';
-import { ProductRepository } from '../repositories/ProductRepository';
-
-const productRepository = new ProductRepository
-
-const createProductController = new CreateProductController(
-  productRepository
-)
-
-const viewProductController = new ViewProductsController(
-  productRepository
-)
-const deleteProductController = new DeleteProductController(
-  productRepository
-)
-const updateProductController = new UpdateProductController(
-  productRepository
-)
+import { Router } from 'express';
+import {
+  createProductController,
+  deleteProductController,
+  updateProductController,
+  viewProductController } from '../controllers/productControllers';
 
 const productRoutes = Router();
 
