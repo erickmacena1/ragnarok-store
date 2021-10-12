@@ -1,4 +1,4 @@
-import { PrismaClient, Product } from ".prisma/client";
+import { Product } from ".prisma/client";
 import { Request, Response } from "express";
 import { IProductReposiroty } from "../../repositories/IProductRepository";
 

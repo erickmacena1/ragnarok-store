@@ -5,4 +5,5 @@ export interface IProductReposiroty {
   createProduct(product: IProduct): Promise<void>;
   getProduct(id: string): Promise<Product>
   getAllProducts(): Promise<Product[]>
+  deleteProduct(id: string): Promise<void>
 }
