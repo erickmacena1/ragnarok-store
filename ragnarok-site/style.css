@@ -1,12 +1,25 @@
 :root {
+    --sky1: hsl(230, 21%, 80%);
+    --sky2: hsl(230, 21%, 55%);
+    --green1: hsl(70, 19%, 25%);
+    --green2: hsl(90, 11%, 44%);
+    --yellow1: hsl(37, 65%, 79%);
+    --white1: hsl(0, 0%, 90%);
+    --black1: hsl(0, 0%, 18%);
+
     font-family: Arial, Helvetica, sans-serif;
     font-size: 62.5%;
+    color: var(--black1);
 }
 
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+html {
+    background-color: var(--white1);
 }
 
 .title-1 {
