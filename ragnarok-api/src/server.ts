@@ -3,11 +3,17 @@ import 'dotenv/config'
 import express from 'express';
 import { productRoutes } from './api/routes/productRoutes';
 import cors from 'cors'
+import path from 'path'
+
+const env = process.env
+
+const PORT = env.PORT || env.DEV_PORT || 3000
 
 const server = express();
 
 server.use(cors())
 server.use(express.json())
 server.use(productRoutes);
+server.use('/image', express.static(path.join(__dirname, '..', 'uploads')))
 
-server.listen(3000, () => console.log('Server está rodando!'));
+server.listen(PORT, () => console.log('Server está rodando!'));
