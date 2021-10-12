@@ -1,12 +1,15 @@
 import { PrismaClient, Product } from ".prisma/client";
 import { Request, Response } from "express";
 import { v4 as uuid } from 'uuid'
+import { IProductReposiroty } from "../../repositories/IProductRepository";
 import { ProductValidation } from "../../validation/productValidation";
 class CreateProductController {
 
-  async createProduct(req: Request, res: Response): Promise<Response> {
-    const prisma = new PrismaClient()
+  constructor(
+    private productRepository: IProductReposiroty
+  ) {}
 
+  async createProduct(req: Request, res: Response): Promise<Response> {
     const productValidator = new ProductValidation()
 
     const {
@@ -25,12 +28,7 @@ class CreateProductController {
 
     await productValidator.createProductValidate(product)
 
-    await prisma.product.create({
-      data: {
-        id: uuid(),
-        ... product
-      }
-    })
+    await this.productRepository.createProduct(product)
 
     return res.status(201).json({ message: 'Produto salvado!'})
   }

@@ -1,8 +1,8 @@
 interface IProduct {
-  name?: string;
-  description?: string;
-  image?: string;
-  value?: number;
+  name: string;
+  description: string;
+  image: string;
+  value: number;
 }
 
 export { IProduct }

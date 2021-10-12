@@ -3,15 +3,21 @@ import { CreateProductController,  } from '../controllers/productControllers/Cre
 import { DeleteProductController } from '../controllers/productControllers/DeleteProductController';
 import { UpdateProductController } from '../controllers/productControllers/UpdateProductController';
 import { ViewProductsController } from '../controllers/productControllers/ViewProductsController';
+import { ProductRepository } from '../repositories/ProductRepository';
 
-const createProductController = new CreateProductController()
+const createProductController = new CreateProductController(
+  new ProductRepository
+)
+
 const viewProductController = new ViewProductsController()
 const deleteProductController = new DeleteProductController()
 const updateProductController = new UpdateProductController()
 
 const productRoutes = Router();
 
-productRoutes.post('/', createProductController.createProduct);
+productRoutes.post('/', (req, res) => {
+  createProductController.createProduct(req, res)
+});
 
 productRoutes.get('/', viewProductController.viewAllProducts);
 productRoutes.get('/:id', viewProductController.viewOneProduct);
