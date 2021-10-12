@@ -1,19 +1,15 @@
-import { PrismaClient } from ".prisma/client";
 import { Request, Response } from "express";
-import { IProduct } from "../../interfaces/IProduct";
 import { IProductReposiroty } from "../../repositories/IProductRepository";
-import { ProductValidation } from "../../validation/productValidation";
+import { IProductValidation } from "../../validation/IProductValidation";
 
 class UpdateProductController {
 
   constructor (
-    private productRepository: IProductReposiroty
+    private productRepository: IProductReposiroty,
+    private productValidation: IProductValidation
   ) {}
 
   async updateProduct(req: Request, res: Response) {
-
-    const productValidation = new ProductValidation()
-
     const { id } = req.params
 
     const {
@@ -30,7 +26,7 @@ class UpdateProductController {
       value
     }
 
-    await productValidation.updateProductValidate(product)
+    await this.productValidation.updateProductValidate(product)
 
     const updatedProduct = await this.productRepository.updateProduct(id, product)
 

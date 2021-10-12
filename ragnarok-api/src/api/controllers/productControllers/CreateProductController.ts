@@ -1,15 +1,14 @@
 import { Request, Response } from "express";
 import { IProductReposiroty } from "../../repositories/IProductRepository";
-import { ProductValidation } from "../../validation/productValidation";
+import { IProductValidation } from "../../validation/IProductValidation";
 class CreateProductController {
 
   constructor(
-    private productRepository: IProductReposiroty
+    private productRepository: IProductReposiroty,
+    private productValidation: IProductValidation
   ) {}
 
   async createProduct(req: Request, res: Response): Promise<Response> {
-    const productValidator = new ProductValidation()
-
     const {
       name,
       description,
@@ -24,7 +23,7 @@ class CreateProductController {
       value
     }
 
-    await productValidator.createProductValidate(product)
+    await this.productValidation.createProductValidate(product)
 
     await this.productRepository.createProduct(product)
 

@@ -1,7 +1,8 @@
 import * as yup from 'yup'
 import { IProduct } from "../interfaces/IProduct";
+import { IProductValidation } from './IProductValidation';
 
-class ProductValidation {
+class ProductValidation implements IProductValidation {
 
   async createProductValidate(product: IProduct) {
     const productSchema = yup.object().shape({
