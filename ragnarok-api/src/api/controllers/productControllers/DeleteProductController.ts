@@ -1,21 +1,17 @@
-import { PrismaClient } from ".prisma/client";
 import { Request, Response } from "express";
+import { IProductReposiroty } from "../../repositories/IProductRepository";
 
 class DeleteProductController {
 
-  async deleteProduct(req: Request, res: Response) {
+  constructor (
+    private productRepository: IProductReposiroty
+  ) {}
 
-    const prisma = new PrismaClient()
+  async deleteProduct(req: Request, res: Response) {
 
     const { id } = req.params
 
-    await prisma.product.delete({
-      where: {
-        id
-      }
-    })
-
-    await prisma.$disconnect()
+    await this.productRepository.deleteProduct(id)
 
     return res.status(200).json({ message: `Produto com id '${id}' deletado!` })
 
