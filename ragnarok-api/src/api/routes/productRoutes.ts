@@ -17,7 +17,9 @@ const viewProductController = new ViewProductsController(
 const deleteProductController = new DeleteProductController(
   productRepository
 )
-const updateProductController = new UpdateProductController()
+const updateProductController = new UpdateProductController(
+  productRepository
+)
 
 const productRoutes = Router();
 
@@ -32,7 +34,9 @@ productRoutes.get('/:id', (req, res) => {
   viewProductController.viewOneProduct(req, res)
 });
 
-productRoutes.put('/:id', updateProductController.updateProduct);
+productRoutes.put('/:id', (req, res) => {
+  updateProductController.updateProduct(req, res)
+});
 
 productRoutes.delete('/:id', (req, res) => {
   deleteProductController.deleteProduct(req, res)
