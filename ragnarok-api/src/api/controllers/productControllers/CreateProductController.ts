@@ -1,6 +1,4 @@
-import { PrismaClient, Product } from ".prisma/client";
 import { Request, Response } from "express";
-import { v4 as uuid } from 'uuid'
 import { IProductReposiroty } from "../../repositories/IProductRepository";
 import { ProductValidation } from "../../validation/productValidation";
 class CreateProductController {

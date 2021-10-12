@@ -2,6 +2,7 @@ import { prisma } from "../../config/client";
 import { v4 as uuid } from 'uuid'
 import { IProduct } from "../interfaces/IProduct";
 import { IProductReposiroty } from "./IProductRepository";
+import { Product } from ".prisma/client";
 
 class ProductRepository implements IProductReposiroty {
 
@@ -12,6 +13,26 @@ class ProductRepository implements IProductReposiroty {
         ... product
       }
     })
+  }
+
+  async getProduct(id: string): Promise<Product> {
+    const product: Product | null = await prisma.product.findFirst({
+      where: {
+        id
+      }
+    })
+
+    if (product === null) throw Error('Produto não encontrado!')
+
+    return product
+  }
+
+  async getAllProducts(): Promise<Product[]> {
+    const products: Product[] = await prisma.product.findMany()
+
+    if (products.length == 0) throw Error('A lista de Produtos está vazia!')
+
+    return products
   }
 
 }

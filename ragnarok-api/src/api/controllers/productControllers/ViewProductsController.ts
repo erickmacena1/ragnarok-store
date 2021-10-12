@@ -1,36 +1,26 @@
-import { PrismaClient } from ".prisma/client";
+import { PrismaClient, Product } from ".prisma/client";
 import { Request, Response } from "express";
+import { IProductReposiroty } from "../../repositories/IProductRepository";
 
 class ViewProductsController {
 
-  async viewAllProducts(req: Request, res: Response) {
-
-    const prisma = new PrismaClient()
-
-    const products = await prisma.product.findMany()
-
-    await prisma.$disconnect()
-
-    return res.status(200).json(products)
-  }
+  constructor(
+    private productRepository: IProductReposiroty
+  ) {}
 
   async viewOneProduct(req: Request, res: Response) {
+    const { id } = req.params;
 
-    const prisma = new PrismaClient()
+    const product = await this.productRepository.getProduct(id);
 
-    const { id } = req.params
-
-    const product = await prisma.product.findFirst({
-      where: {
-        id
-      }
-    })
-
-    await prisma.$disconnect()
-
-    return res.status(200).json(product)
+    return res.status(200).json(product);
   }
 
+  async viewAllProducts(req: Request, res: Response) {
+    const products: Product[] = await this.productRepository.getAllProducts();
+
+    return res.status(200).json(products);
+  }
 }
 
-export { ViewProductsController }
+export { ViewProductsController };

@@ -5,11 +5,15 @@ import { UpdateProductController } from '../controllers/productControllers/Updat
 import { ViewProductsController } from '../controllers/productControllers/ViewProductsController';
 import { ProductRepository } from '../repositories/ProductRepository';
 
+const productRepository = new ProductRepository
+
 const createProductController = new CreateProductController(
-  new ProductRepository
+  productRepository
 )
 
-const viewProductController = new ViewProductsController()
+const viewProductController = new ViewProductsController(
+  productRepository
+)
 const deleteProductController = new DeleteProductController()
 const updateProductController = new UpdateProductController()
 
@@ -19,8 +23,12 @@ productRoutes.post('/', (req, res) => {
   createProductController.createProduct(req, res)
 });
 
-productRoutes.get('/', viewProductController.viewAllProducts);
-productRoutes.get('/:id', viewProductController.viewOneProduct);
+productRoutes.get('/', (req, res) => {
+  viewProductController.viewAllProducts(req, res)
+});
+productRoutes.get('/:id', (req, res) => {
+  viewProductController.viewOneProduct(req, res)
+});
 
 productRoutes.put('/:id', updateProductController.updateProduct);
 
