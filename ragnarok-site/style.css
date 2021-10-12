@@ -1,35 +1,94 @@
-:root {
-    --sky1: hsl(230, 21%, 80%);
-    --sky2: hsl(230, 21%, 55%);
-    --green1: hsl(70, 19%, 25%);
-    --green2: hsl(90, 11%, 44%);
-    --yellow1: hsl(37, 65%, 79%);
-    --white1: hsl(0, 0%, 90%);
-    --black1: hsl(0, 0%, 18%);
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 62.5%;
-    color: var(--black1);
-}
-
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+:root {
+    --dark-blue: #353B57;
+    --light-blue: #C2CAF0;
+    --dark-brown: #574C2C;
+    --light-brown: #A39874;
+    --black1: hsl(0, 0%, 16%);
+    --black2: hsl(0, 0%, 20%);
+    --black3: hsl(0, 0%, 36%);
+    --black4: hsl(0, 0%, 46%);
+    --black5: hsl(0, 0%, 66%);
+    --black6: hsl(0, 0%, 76%);
+    --white3: hsl(0, 0%, 85%);
+    --white2: hsl(0, 0%, 90%);
+    --white1: hsl(0, 0%, 95%);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 62.5%;
+    color: var(--dark-brown);
+}
+
+.color-black-1 { color: var(--black1); }
+.color-black-2 { color: var(--black2); }
+
+.fs-1 { font-size: 1em;}
+.fs-2 { font-size: 1.6em;}
+.fs-3 { font-size: 2.2em;}
+.fs-4 { font-size: 2.8em;}
+
+.font-weight-light { font-weight: lighter;}
+
+.d-inline {display: inline-block;}
+
+.p-1 {padding: 1em;}
+.p-2 {padding: 2em;}
+
+.p-inline-1 {padding-inline: 1em;}
+
+.p-bottom-1 {padding-bottom: 1em;}
+.p-bottom-2 {padding-bottom: 2em;}
+
+.size-24 {
+    height: 24px;
+    width: 24px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.justify-between { justify-content: space-between; }
+
+.align-center { align-items: center; }
+
+.filter-light-blue {
+    filter: invert(81%) sepia(18%) saturate(521%) hue-rotate(195deg) brightness(97%) contrast(93%);
+}
+
 html {
     background-color: var(--white1);
 }
 
-.title-1 {
-    text-align: center;
-    margin-block: 1.5em;
-    font-size: 3rem;
+.header {
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
 }
 
 .title-2 {
     text-align: center;
-    margin-block: 1.5em;
+    margin-block: 1em;
 }
 
+.product-list {
+    list-style-type: none;
+}
+
+.product-list > li:first-child {
+    border-top: var(--white3) solid 1px;
+}
+
+.product-list > li {
+    border-bottom: var(--white3) solid 1px;
+}
