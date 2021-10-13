@@ -1,13 +1,13 @@
 import { prisma } from "../../config/client";
 import { v4 as uuid } from 'uuid'
-import { IProduct } from "../interfaces/IProduct";
-import { IProductReposiroty } from "./IProductRepository";
+import { IProductDTO } from "../interfaces/IProductDTO";
+import { IProduct, IProductReposiroty } from "./IProductRepository";
 import { Product } from ".prisma/client";
 import { IUpdateProduct } from "../interfaces/IUpdateProduct";
 
 class ProductRepository implements IProductReposiroty {
 
-  async createProduct(product: IProduct): Promise<void> {
+  async createProduct(product: IProductDTO): Promise<void> {
     const {
       name,
       description,
@@ -36,22 +36,50 @@ class ProductRepository implements IProductReposiroty {
     })
   }
 
-  async getProduct(id: string): Promise<Product> {
-    const product: Product | null = await prisma.product.findFirst({
+  async getProduct(id: string): Promise<IProduct> {
+    const product = await prisma.product.findFirst({
       where: {
         id
-      }
-    })
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        value: true,
+        image: {
+          select: {
+            id: true,
+            url: true
+          }
+        }
+      },
+    }) as IProduct
 
     if (product === null) throw Error('Produto não encontrado!')
 
     return product
   }
 
-  async getAllProducts(): Promise<Product[]> {
-    const products: Product[] = await prisma.product.findMany()
+  async getAllProducts(): Promise<IProduct[]> {
+    const products = await prisma.product.findMany({
+      orderBy: {
+        create_at: 'desc'
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        value: true,
+        image: {
+          select: {
+            id: true,
+            url: true
+          }
+        }
+      },
+    }) as IProduct[]
 
-    // if (products.length == 0) throw Error('A lista de Produtos está vazia!')
+    if (products.length == 0) throw Error('A lista de Produtos está vazia!')
 
     return products
   }

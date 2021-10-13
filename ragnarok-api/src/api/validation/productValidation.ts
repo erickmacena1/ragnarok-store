@@ -1,11 +1,11 @@
 import * as yup from 'yup'
-import { IProduct } from "../interfaces/IProduct";
+import { IProductDTO } from "../interfaces/IProductDTO";
 import { IUpdateProduct } from '../interfaces/IUpdateProduct';
 import { IProductValidation } from './IProductValidation';
 
 class ProductValidation implements IProductValidation {
 
-  async createProductValidate(product: IProduct) {
+  async createProductValidate(product: IProductDTO) {
     const productSchema = yup.object().shape({
       name: yup.string().required(),
       description: yup.string().required(),
