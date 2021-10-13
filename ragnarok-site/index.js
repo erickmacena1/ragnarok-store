@@ -1,7 +1,13 @@
+const $productList = document.querySelector("#productList")
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadItemsOnScreen(data)
+})
+console.log("Dados:")
 console.log(data)
 
-function loadItemsOnScreen(data=[]) {
-    data.map(item => {
+function loadItemsOnScreen(data = []) {
+    const productList = data.map(item => {
         return `<li class="flex-row p-1">
         <div>
             <img src="${item.image}"
@@ -15,4 +21,6 @@ function loadItemsOnScreen(data=[]) {
         </div>
     </li>`
     })
+    
+    productList.forEach(li => $productList.innerHTML += li)
 }
