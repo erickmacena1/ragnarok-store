@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
+import { MulterFile } from "../../interfaces/MulterFile";
 import { IProductReposiroty } from "../../repositories/IProductRepository";
 import { IProductValidation } from "../../validation/IProductValidation";
+import { IUpdateProduct } from '../../interfaces/IUpdateProduct'
+import imagesHelpes from "../../helper/imagesHelpes";
 
 class UpdateProductController {
 
@@ -15,15 +18,28 @@ class UpdateProductController {
     const {
       name,
       description,
-      image,
       value
     } = req.body
 
-    const product = {
+    const file = req.file as MulterFile
+
+    let product: IUpdateProduct = {
       name,
       description,
-      image,
-      value
+      value,
+    }
+
+    if (file) {
+
+      let {
+        location,
+        filename
+      } = file
+
+      product = {
+        ... product,
+        image: location || imagesHelpes.getLocalUrl(filename ? filename : '')
+      }
     }
 
     await this.productValidation.updateProductValidate(product)

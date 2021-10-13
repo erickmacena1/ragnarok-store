@@ -1,5 +1,6 @@
 import * as yup from 'yup'
 import { IProduct } from "../interfaces/IProduct";
+import { IUpdateProduct } from '../interfaces/IUpdateProduct';
 import { IProductValidation } from './IProductValidation';
 
 class ProductValidation implements IProductValidation {
@@ -17,7 +18,7 @@ class ProductValidation implements IProductValidation {
     })
   }
 
-  async updateProductValidate(product: IProduct) {
+  async updateProductValidate(product: IUpdateProduct) {
     const productSchema = yup.object().shape({
       name: yup.string().notRequired(),
       description: yup.string().notRequired(),

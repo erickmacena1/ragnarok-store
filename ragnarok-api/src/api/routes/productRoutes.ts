@@ -21,11 +21,11 @@ productRoutes.get("/:id", (req, res) => {
   return viewProductController.viewOneProduct(req, res);
 });
 
-productRoutes.put("/:id", (req, res) => {
+productRoutes.put("/:id", upload.single("image"), (req, res) => {
   return updateProductController.updateProduct(req, res);
 });
 
-productRoutes.delete("/:id", upload.single("image"), (req, res) => {
+productRoutes.delete("/:id", (req, res) => {
   return deleteProductController.deleteProduct(req, res);
 });
 

@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid'
 import { IProduct } from "../interfaces/IProduct";
 import { IProductReposiroty } from "./IProductRepository";
 import { Product } from ".prisma/client";
+import { IUpdateProduct } from "../interfaces/IUpdateProduct";
 
 class ProductRepository implements IProductReposiroty {
 
@@ -35,7 +36,7 @@ class ProductRepository implements IProductReposiroty {
     return products
   }
 
-  async updateProduct(id: string, product: IProduct): Promise<Product> {
+  async updateProduct(id: string, product: IUpdateProduct): Promise<Product> {
     const updatedProduct = await prisma.product.update({
       where: {
         id
