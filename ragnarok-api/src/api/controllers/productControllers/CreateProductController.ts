@@ -2,12 +2,14 @@ import { Request, Response } from "express";
 import imagesHelpes from "../../helper/imagesHelpes";
 import { MulterFile } from "../../interfaces/MulterFile";
 import { IProductReposiroty } from "../../repositories/IProductRepository";
+import { IImageService } from "../../services/IImageService";
 import { IProductValidation } from "../../validation/IProductValidation";
 class CreateProductController {
 
   constructor(
     private productRepository: IProductReposiroty,
     private productValidation: IProductValidation,
+    private imageService: IImageService
   ) {}
 
   async createProduct(req: Request, res: Response): Promise<Response> {
@@ -17,12 +19,9 @@ class CreateProductController {
       value
     } = req.body
 
-    const {
-      filename,
-      location
-    } = req.file as MulterFile
+    const file = req.file as MulterFile
 
-    const image = location || imagesHelpes.getLocalUrl(filename ? filename : '')
+    const image = this.imageService.saveImage(file)
 
     const product = {
       name,

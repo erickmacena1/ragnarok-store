@@ -8,10 +8,30 @@ import { IUpdateProduct } from "../interfaces/IUpdateProduct";
 class ProductRepository implements IProductReposiroty {
 
   async createProduct(product: IProduct): Promise<void> {
+    const {
+      name,
+      description,
+      value,
+    } = product
+
+    const {
+      key,
+      url
+    } = product.image
+
     await prisma.product.create({
       data: {
         id: uuid(),
-        ... product
+        name,
+        description,
+        value,
+        image: {
+          create: {
+            id: uuid(),
+            url,
+            key
+          }
+        }
       }
     })
   }
@@ -31,7 +51,7 @@ class ProductRepository implements IProductReposiroty {
   async getAllProducts(): Promise<Product[]> {
     const products: Product[] = await prisma.product.findMany()
 
-    if (products.length == 0) throw Error('A lista de Produtos está vazia!')
+    // if (products.length == 0) throw Error('A lista de Produtos está vazia!')
 
     return products
   }
