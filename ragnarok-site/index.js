@@ -21,6 +21,22 @@ function loadItemsOnScreen(data = []) {
         </div>
     </li>`
     })
-    
+
     productList.forEach(li => $productList.innerHTML += li)
+}
+
+function handleBuy() {
+    var stripe = Stripe('pk_test_51JV0dAHIXjsNwm1Ce0ztCpoqq6wltPkOV2TeamoJNVFoQqXI4CIFYtnGymz8UfnYlQQfL2vxVoKJxzPKD53ZbRBK00Gqz50bUf')
+
+    var orderBtn = document.getElementById('order-btn')
+
+    orderBtn.addEventListener('click', () => {
+
+        stripe.redirectToCheckout({
+
+            sessionId: '<%= sessionId %>'
+
+        })
+
+    })
 }
