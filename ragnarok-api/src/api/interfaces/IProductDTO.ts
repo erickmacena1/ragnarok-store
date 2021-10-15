@@ -1,4 +1,4 @@
-import { IImage } from "../services/IImageService";
+import { IImage } from "../services/imageService/IImageService";
 
 export interface IProductDTO {
   name: string;

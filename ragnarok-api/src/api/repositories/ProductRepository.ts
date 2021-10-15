@@ -97,12 +97,19 @@ class ProductRepository implements IProductReposiroty {
     return updatedProduct
   }
 
-  async deleteProduct(id: string): Promise<void> {
-    await prisma.product.delete({
+  async deleteProduct(id: string): Promise<IProduct> {
+    return await prisma.product.delete({
       where: {
         id
+      },
+      include: {
+        image: {
+          select: {
+            key: true
+          }
+        }
       }
-    })
+    }) as IProduct
   }
 
 }

@@ -1,5 +1,5 @@
 import { ProductRepository } from "../../repositories/ProductRepository"
-import { ImageService } from "../../services/ImageService"
+import { ImageService } from "../../services/imageService/ImageService"
 import { ProductValidation } from "../../validation/productValidation"
 import { CreateProductController } from "./CreateProductController"
 import { DeleteProductController } from "./DeleteProductController"
@@ -20,7 +20,8 @@ const viewProductController = new ViewProductsController(
   productRepository
 )
 const deleteProductController = new DeleteProductController(
-  productRepository
+  productRepository,
+  imageService
 )
 const updateProductController = new UpdateProductController(
   productRepository,

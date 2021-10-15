@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import imagesHelpes from "../../helper/imagesHelpes";
 import { MulterFile } from "../../interfaces/MulterFile";
 import { IProductReposiroty } from "../../repositories/IProductRepository";
-import { IImageService } from "../../services/IImageService";
+import { IImageService } from "../../services/imageService/IImageService";
 import { IProductValidation } from "../../validation/IProductValidation";
+
 class CreateProductController {
 
   constructor(

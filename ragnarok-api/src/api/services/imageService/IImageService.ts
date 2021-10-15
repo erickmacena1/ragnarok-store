@@ -1,4 +1,4 @@
-import { MulterFile } from "../interfaces/MulterFile";
+import { MulterFile } from "../../interfaces/MulterFile";
 
 export interface IImageService {
   saveImage(image: MulterFile): IImage;

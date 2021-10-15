@@ -1,12 +1,10 @@
 import { Router } from "express";
-import { CheckoutController } from "../controllers/checkout/CheckoutController";
+import { checkoutController } from '../controllers/checkout'
 
 const checkoutRouter = Router()
 
-const checkoutContrller = new CheckoutController()
-
 checkoutRouter.get('/checkout/:id', (req, res) => {
-  checkoutContrller.getCheckout(req, res)
+  checkoutController.getCheckout(req, res)
 })
 
 export { checkoutRouter }

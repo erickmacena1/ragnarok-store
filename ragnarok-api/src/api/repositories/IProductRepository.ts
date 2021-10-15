@@ -7,7 +7,7 @@ export interface IProductReposiroty {
   getProduct(id: string): Promise<IProduct>;
   getAllProducts(): Promise<IProduct[]>;
   updateProduct(id: string, product: IUpdateProduct): Promise<Product>;
-  deleteProduct(id: string): Promise<void>;
+  deleteProduct(id: string): Promise<IProduct>;
 }
 
 export interface IProduct {
