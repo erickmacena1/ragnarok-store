@@ -42,6 +42,9 @@
 .p-1 {padding: 1em;}
 .p-2 {padding: 2em;}
 
+
+.m-05 {margin: .5em;}
+
 .p-inline-1 {padding-inline: 1em;}
 
 .p-bottom-1 {padding-bottom: 1em;}
@@ -101,6 +104,24 @@ html, body {
 
 .product-list > li {
     border-bottom: var(--white3) solid 1px;
+}
+
+.buy-btn {
+    padding: .5em 1em;
+    color: var(--black1);
+    font-weight: bolder;
+    background-color: var(--white1);
+    border-radius: 10px;
+    width: 140px;
+    border: outset;
+}
+
+.buy-btn:hover {
+    cursor: pointer;
+}
+
+.buy-btn:active {
+    border: inset;
 }
 
 .progress {
