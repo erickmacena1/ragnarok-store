@@ -26,8 +26,8 @@ class CheckoutService implements ICheckoutService {
       ],
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      success_url: process.env.SUCCES_URL,
+      cancel_url: process.env.CANCEL_URL,
     });
 
     if (url === null)
