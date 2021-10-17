@@ -1,6 +1,5 @@
-import { Product } from ".prisma/client";
 import { Request, Response } from "express";
-import { IProductReposiroty } from "../../repositories/IProductRepository";
+import { IProduct, IProductReposiroty } from "../../repositories/IProductRepository";
 
 class ViewProductsController {
 
@@ -17,7 +16,7 @@ class ViewProductsController {
   }
 
   async viewAllProducts(req: Request, res: Response) {
-    const products: Product[] = await this.productRepository.getAllProducts();
+    const products: IProduct[] = await this.productRepository.getAllProducts();
 
     return res.status(200).json(products);
   }
