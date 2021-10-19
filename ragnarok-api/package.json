@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --exit-child src/server.ts",
     "pmd": "prisma migrate dev --name",
-    "pmr": "prisma migrate reset"
+    "pmr": "prisma migrate reset",
+    "build": "tsc && prisma generate",
+    "start": "node dist/server.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
