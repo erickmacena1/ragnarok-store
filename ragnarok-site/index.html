@@ -11,14 +11,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg-ice">
     <header class="header flex-column justify-between p-2">
         <div class="flex-row justify-between align-center p-bottom-2">
             <div class="flex-row">
-                <a class="size-24" href="#">
+
+                <div class="size-24 modal-switch">
                     <img class="filter-light-blue" src="assets/menu.svg" alt="">
-                </a>
-                <h1 class="d-inline p-inline-1">Ragnarok Store &#9876;</h1>
+
+                    <div class="modal view-size-100 d-none">
+                        <nav class="fs-3 color-black-1">
+                            <a href="administrador/crud.html"><li>Area do Administrador</li></a>
+                        </nav>
+                    </div>
+                </div>
+                
+                <h1 class="color-gold d-inline p-inline-1">Ragnarok Store &#9876;</h1>
             </div>
 
             <a class="size-24" href="#"><img class="filter-light-blue" src="assets/shopping-cart.svg" alt=""></a>
@@ -31,7 +39,7 @@
     </header>
 
     <main>
-        <h2 class="title-2 fs-4">🔥Produtos Fodas🔥</h2>
+        <h2 class="title-2 fs-4 color-black-2">🔥Produtos Fodas🔥</h2>
 
         <ul id="productList" class="product-list">
         </ul>
