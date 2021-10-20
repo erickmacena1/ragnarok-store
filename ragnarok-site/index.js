@@ -46,7 +46,7 @@ function loadItemsOnScreen(data = []) {
 
     </li>`
     })
-
+    $productList.innerHTML = ''
     productList.forEach(li => $productList.innerHTML += li)
 }
 
