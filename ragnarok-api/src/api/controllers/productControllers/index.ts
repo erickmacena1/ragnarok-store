@@ -25,7 +25,8 @@ const deleteProductController = new DeleteProductController(
 )
 const updateProductController = new UpdateProductController(
   productRepository,
-  productValidation
+  productValidation,
+  imageService
 )
 
 export {

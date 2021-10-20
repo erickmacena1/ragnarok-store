@@ -25,7 +25,10 @@ class ProductValidation implements IProductValidation {
     const productSchema = yup.object().shape({
       name: yup.string().notRequired(),
       description: yup.string().notRequired(),
-      image: yup.string().notRequired(),
+      image: yup.object().shape({
+        url: yup.string().notRequired(),
+        key: yup.string().notRequired()
+      }).notRequired(),
       value: yup.number().notRequired()
     })
 

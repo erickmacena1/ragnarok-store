@@ -26,7 +26,6 @@ class ImageService implements IImageService {
   }
 
   deleteImage(key: string): void {
-    console.log(key)
     if (process.env.DEV_PORT) {
       promisify(fs.unlink)(
         path.resolve(__dirname, '..', '..', '..', '..','uploads', key)
@@ -37,6 +36,11 @@ class ImageService implements IImageService {
         Key: key
       }).promise()
     }
+  }
+
+  deleteImageOnUpdate(id: string): void {
+
+
 
   }
 
