@@ -26,16 +26,16 @@ class ImageService implements IImageService {
   }
 
   deleteImage(key: string): void {
-
-    if (process.env.PORT) {
+    console.log(key)
+    if (process.env.DEV_PORT) {
+      promisify(fs.unlink)(
+        path.resolve(__dirname, '..', '..', '..', '..','uploads', key)
+      )
+    } else {
       this.s3.deleteObject({
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: key
       }).promise()
-    } else {
-      promisify(fs.unlink)(
-        path.resolve(__dirname, '..', '..', '..', 'uploads', key)
-      )
     }
 
   }
