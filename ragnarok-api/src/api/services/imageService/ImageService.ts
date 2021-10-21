@@ -5,10 +5,16 @@ import aws from 'aws-sdk'
 import { promisify } from 'util'
 import fs from 'fs'
 import path from 'path'
+import { IImageRepository } from "../../repositories/imageRepository/IImageRepository";
+import { Image } from ".prisma/client";
 
 class ImageService implements IImageService {
 
   private s3 = new aws.S3()
+
+  constructor(
+    private imageRepository: IImageRepository
+  ) {}
 
   saveImage(image: MulterFile): IImage {
 
@@ -38,10 +44,11 @@ class ImageService implements IImageService {
     }
   }
 
-  deleteImageOnUpdate(id: string): void {
+  async deleteImageOnUpdate(id: string): Promise<Image> {
 
+    const image = await this.imageRepository.findProductImage(id)
 
-
+    return image
   }
 
 }

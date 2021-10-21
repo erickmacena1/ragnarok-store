@@ -1,3 +1,4 @@
+import { ImageRepository } from "../../repositories/imageRepository/ImageRepository"
 import { ProductRepository } from "../../repositories/ProductRepository"
 import { ImageService } from "../../services/imageService/ImageService"
 import { ProductValidation } from "../../validation/productValidation"
@@ -7,8 +8,12 @@ import { UpdateProductController } from "./UpdateProductController"
 import { ViewProductsController } from "./ViewProductsController"
 
 const productRepository = new ProductRepository()
+const imageRepository = new ImageRepository()
 const productValidation = new ProductValidation()
-const imageService = new ImageService()
+
+const imageService = new ImageService(
+  imageRepository
+)
 
 const createProductController = new CreateProductController(
   productRepository,
