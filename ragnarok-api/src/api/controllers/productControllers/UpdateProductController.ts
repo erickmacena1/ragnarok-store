@@ -3,13 +3,15 @@ import { MulterFile } from "../../interfaces/MulterFile";
 import { IProductReposiroty } from "../../repositories/IProductRepository";
 import { IProductValidation } from "../../validation/IProductValidation";
 import { IUpdateProduct } from '../../interfaces/IUpdateProduct'
-import imagesHelpes from "../../helper/imagesHelpes";
+import { IImageService } from "../../services/imageService/IImageService";
+import { Image } from ".prisma/client";
 
 class UpdateProductController {
 
   constructor (
     private productRepository: IProductReposiroty,
-    private productValidation: IProductValidation
+    private productValidation: IProductValidation,
+    private imageService: IImageService
   ) {}
 
   async updateProduct(req: Request, res: Response) {
@@ -29,24 +31,29 @@ class UpdateProductController {
       value,
     }
 
+    var imageToBeDeleted: Image
+
     if (file) {
 
-      let {
-        location,
-        filename
-      } = file
+      let image = this.imageService.saveImage(file)
 
       product = {
         ... product,
-        image: location || imagesHelpes.getLocalUrl(filename ? filename : '')
+        image
       }
+
+
+      imageToBeDeleted = await this.imageService.deleteImageOnUpdate(id)
     }
 
     await this.productValidation.updateProductValidate(product)
 
-    const updatedProduct = await this.productRepository.updateProduct(id, product)
+    await this.productRepository.updateProduct(id, product)
 
-    return res.status(200).json(updatedProduct)
+    if (file)
+      this.imageService.deleteImage(imageToBeDeleted!.key)
+
+    return res.status(200).json({ message: `Product ${id} updated!` })
   }
 
 }

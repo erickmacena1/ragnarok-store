@@ -85,12 +85,28 @@ class ProductRepository implements IProductReposiroty {
   }
 
   async updateProduct(id: string, product: IUpdateProduct): Promise<Product> {
+
+    const {
+      name,
+      description,
+      value,
+      image
+    } = product
+
     const updatedProduct = await prisma.product.update({
       where: {
         id
       },
       data: {
-        ... product
+        name,
+        description,
+        value,
+        image: {
+          update: {
+            key: image?.key,
+            url: image?.url
+          }
+        }
       }
     })
 
