@@ -103,7 +103,7 @@ html, body {
     min-height: 100vh;
 }
 
-nav {
+nav, ul, ol {
     list-style-type: none;
 }
 
@@ -119,9 +119,17 @@ form > input {
     margin: .5rem;
 }
 
+.container {
+    max-width: 1444px;
+    margin: auto;
+    border-radius: 30px;
+    box-shadow: var(--gray-blue) 5px 5px 10px 5px;
+}
+
 .header {
     background-color: var(--dark-blue);
     color: var(--strong-blue);
+    border-radius: 0 0 33px 33px;
 }
 
 .modal-switch {cursor: pointer;}

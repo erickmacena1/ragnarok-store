@@ -12,24 +12,38 @@
 </head>
 
 <body class="bg-white-2">
+    <div class="container">
 
-    <main class="fs-3">
-        <nav class="selection flex-row">
-            <a class="btn item-1">Adicionar Produto</a>
-            <a class="btn item-2">Remover Produto</a>
-        </nav>
-
-        <ul class="content">
-            <li class="content-item-1">
-                <form class="flex-column align-center justify-center">
-                    <input type="text" name="name" id="name" placeholder="Nome" required>
-                    <input type="text" name="desc" id="desc" placeholder="Descrição" required>
-                    <input type="number" name="price" id="price" placeholder="Preço" required>
-                    <input type="url" name="img" id="img" placeholder="Link da Imagem" required>
-
-                    <input class="btn" type="submit" value="Adicionar">
-                </form>
-            </li>
-        </ul>
-    </main>
+        <main class="fs-3">
+            <nav class="selection flex-row">
+                <a class="btn item-1">Adicionar Produto</a>
+                <a class="btn item-2">Remover Produto</a>
+            </nav>
+    
+            <ul class="content">
+                <li class="content-item-1">
+                    <form class="flex-column align-center justify-center">
+                        <input type="text" name="name" id="name" placeholder="Nome" required>
+                        <input type="text" name="desc" id="desc" placeholder="Descrição" required>
+                        <input type="number" name="price" id="price" placeholder="Preço" required>
+                        <input type="url" name="img" id="img" placeholder="Link da Imagem" required>
+    
+                        <input class="btn" type="submit" value="Adicionar">
+                    </form>
+                </li>
+    
+                <li class="content-item-1">
+                    <form class="flex-column align-center justify-center">
+                        <input type="text" name="id" id="id" placeholder="ID do Produto" required>
+                        
+                        <input class="btn" type="submit" value="Remover">
+                    </form>
+                </li>
+            </ul>
+        </main>
+    
+        <footer>
+            <a class="btn" href="http://127.0.0.1:5500/ragnarok-site/index.html">Voltar ao inicio</a>
+        </footer>
+    </div>
 </body>
